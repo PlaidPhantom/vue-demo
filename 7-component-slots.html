@@ -24,6 +24,10 @@
 				</color-wrapper>
 			</section>
 
+			<template id="wrapper">
+				<div style="padding: 1em; border: 1px solid black;" :style="myStyle"><slot></slot></div>
+			</template>
+
 			<script>
 				Vue.component('color-wrapper', {
 					props: [ 'color' ],
@@ -32,9 +36,8 @@
 							return { backgroundColor: '#' + this.color };
 						}
 					},
-					template: `<div style="padding: 1em; border: 1px solid black;" :style="myStyle"><slot></slot></div>`
-				})
-
+					template: '#wrapper'
+				});
 
 				var vm = new Vue({
 					el: '#app',

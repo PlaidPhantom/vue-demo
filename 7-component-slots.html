@@ -17,10 +17,10 @@
 
 		<article>
 			<section id="app">
-				<p>Enter a color hex: <input v-model="color" /></p>
+				<p>Enter a color hex: <input v-model="outercolor" /></p>
 
-				<color-wrapper :color="color">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris urna, egestas ut felis ac, vestibulum rhoncus eros.<p>
+				<color-wrapper :color="outercolor">
+					<p>Lorem ipsum dolor sit amet {{ outercolor }}, consectetur adipiscing elit. Morbi mauris urna, egestas ut felis ac, vestibulum rhoncus eros.<p>
 				</color-wrapper>
 			</section>
 
@@ -39,7 +39,7 @@
 				var vm = new Vue({
 					el: '#app',
 					data: {
-						color: '0ff'
+						outercolor: '0ff'
 					}
 				});
 			</script>

@@ -52,7 +52,10 @@
 							{ path: '/page2', component: p2 },
 							{ path: '/page3/:data?', component: p3, props: true }
 						]
-					})
+					}),
+					mounted: function() {
+						alert('I\'m good to go!');
+					}
 				});
 			</script>
 

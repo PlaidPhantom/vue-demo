@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue Demo - Router</title>
+		<script src="https://unpkg.com/vue"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+		<style type="text/css">
+			html {
+				font-family: sans-serif;
+			}
+
+		</style>
+	</head>
+	<body>
+		<h1>Router</h1>
+
+		<article>
+			<section id="app">
+				<router-link to="/">Home</router-link>
+				<router-link to="/page2">Page 2</router-link>
+				<router-link to="/page3">Page 3</router-link>
+
+				<router-view></router-view>
+			</section>
+
+			<script>
+				var home = Vue.component('home', {
+					template: `<p>This is the Home Page</p>`
+				});
+
+				var p2 = Vue.component('p2', {
+					methods: {
+						go: function() {
+							this.$router.push('/page3/somedata');
+						}
+					},
+					template: `<p>This is Page 2. <button @click="go">Send Page 3 some data.</button></p>`
+				});
+
+				var p3 = Vue.component('p3', {
+					props: ['data'],
+					template: `<div><p>This is Page 3</p><p v-if="data">I got some data: {{ data }}</p></div>`
+				});
+
+				var vm = new Vue({
+					el: '#app',
+					router: new VueRouter({
+						routes: [
+							{ path: '/', component: home },
+							{ path: '/page2', component: p2 },
+							{ path: '/page3/:data?', component: p3, props: true }
+						]
+					})
+				});
+			</script>
+
+		</article>
+	</body>
+</html>

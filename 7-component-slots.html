@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue Demo - Component Slots</title>
+		<script src="https://unpkg.com/vue"></script>
+		<style type="text/css">
+			html {
+				font-family: sans-serif;
+			}
+
+		</style>
+	</head>
+	<body>
+		<h1>Component Slots</h1>
+
+		<article>
+			<section id="app">
+				<p>Enter a color hex: <input v-model="color" /></p>
+
+				<color-wrapper :color="color">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mauris urna, egestas ut felis ac, vestibulum rhoncus eros.<p>
+				</color-wrapper>
+			</section>
+
+			<script>
+				Vue.component('color-wrapper', {
+					props: [ 'color' ],
+					computed: {
+						myStyle: function () {
+							return { backgroundColor: '#' + this.color };
+						}
+					},
+					template: `<div style="padding: 1em; border: 1px solid black;" :style="myStyle"><slot></slot></div>`
+				})
+
+
+				var vm = new Vue({
+					el: '#app',
+					data: {
+						color: '0ff'
+					}
+				});
+			</script>
+
+		</article>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue Demo - Computeds</title>
+		<script src="https://unpkg.com/vue"></script>
+		<style type="text/css">
+			html {
+				font-family: sans-serif;
+			}
+
+		</style>
+	</head>
+	<body>
+		<h1>Computeds</h1>
+		<article>
+			<section id="app">
+				<p>First Name: <input v-model="fname" /></p>
+				<p>Last Name: <input v-model="lname" /></p>
+
+				<p v-if="fname == '' || lname == ''">Why won't you tell me your name?</p>
+				<p v-else>Hello, {{ fullname }}</p>
+
+			</section>
+
+			<script>
+				var vm = new Vue({
+					el: '#app',
+					data: {
+						fname: 'Rutherford',
+						lname: 'Hayes'
+					},
+					computed: {
+						fullname: function() {
+							return `${this.fname} ${this.lname}`;
+						}
+					}
+				});
+			</script>
+		</article>
+	</body>
+</html>

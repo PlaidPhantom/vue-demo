@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue Demo - Components</title>
+		<script src="https://unpkg.com/vue"></script>
+		<style type="text/css">
+			html {
+				font-family: sans-serif;
+			}
+
+		</style>
+	</head>
+	<body>
+		<h1>Components</h1>
+
+		<article>
+			<section id="app">
+				<p>Enter a color hex: <input v-model="color" /></p>
+
+				<color-box :color="color" @picked="show"></color-box>
+			</section>
+
+			<script>
+				Vue.component('color-box', {
+					props: [ 'color' ],
+					computed: {
+						myStyle: function () {
+							return { backgroundColor: '#' + this.color };
+						}
+					},
+					methods: {
+						pick: function() {
+							this.$emit('picked');
+						}
+					},
+					template: `<div style="height: 100px; width: 100px; border: 1px solid black" :style="myStyle" @click="pick"></div>`
+				})
+
+
+				var vm = new Vue({
+					el: '#app',
+					data: {
+						color: '0ff'
+					},
+					methods: {
+						show: function() {
+							alert('picked #' + this.color);
+						}
+					}
+				});
+			</script>
+
+		</article>
+	</body>
+</html>

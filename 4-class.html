@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue Demo - Binding Classes</title>
+		<script src="https://unpkg.com/vue"></script>
+		<style type="text/css">
+			html {
+				font-family: sans-serif;
+			}
+
+		</style>
+	</head>
+	<body>
+		<h1>Binding Classes</h1>
+
+		<article>
+			<style>
+				.boldClass { font-weight: bold; }
+				.italicClass { font-style: italic; }
+			</style>
+
+			<section id="app">
+				<label><input type="checkbox" v-model="bold">bold</label>
+				<label><input type="checkbox" v-model="italic">italic</label>
+
+				<p v-bind:class="styles">The quick brown fox jumps over the lazy dog.</p>
+				<p :class="styles">The five boxing wizards jump quickly.</p>
+			</section>
+
+			<script>
+				var vm = new Vue({
+					el: '#app',
+					data: {
+						bold: false,
+						italic: false
+					},
+					computed: {
+						styles: function() {
+							return {
+								boldClass: this.bold,
+								italicClass: this.italic
+							};
+						}
+					}
+				});
+			</script>
+
+		</article>
+	</body>
+</html>

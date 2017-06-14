@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue Demo - Methods, Events, and Watchers</title>
+		<script src="https://unpkg.com/vue"></script>
+		<style type="text/css">
+			html {
+				font-family: sans-serif;
+			}
+
+		</style>
+	</head>
+	<body>
+		<h1>Methods, Events, and Watchers</h1>
+
+		<article>
+			<section id="app">
+				<button ref="button1" v-on:click="increment">Click Me!</button>
+				<button ref="button2" @click="increment">Click Me!</button>
+
+				<p>You clicked my buttons {{clicks}} times.</p>
+			</section>
+
+			<script>
+				var vm = new Vue({
+					el: '#app',
+					data: {
+						clicks: 0
+					},
+					methods: {
+						increment: function() {
+							this.clicks++;
+						}
+					},
+					watch: {
+						clicks: function(val) {
+							if(val === 10) {
+								alert('Okay, okay, we get the idea.');
+								this.$refs.button1.innerHTML = "Don't click me.";
+								this.$refs.button2.innerHTML = "Don't click me.";
+							}
+
+							if(val === 20)
+								alert('Seriously, you can cut it out now.');
+						}
+					}
+				});
+			</script>
+
+		</article>
+	</body>
+</html>

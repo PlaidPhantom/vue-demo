@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue Demo - For/Foreach Bindings</title>
+		<script src="https://unpkg.com/vue"></script>
+		<style type="text/css">
+			html {
+				font-family: sans-serif;
+			}
+
+		</style>
+	</head>
+	<body>
+		<h1>For/Foreach Bindings</h1>
+
+		<article>
+			<section id="app">
+				<form @submit.prevent="add">
+					<p>Enter new item: <input v-model="newitem" /> <button type="submit">Add</button></p>
+				</form>
+
+				<h3>The Presidents</h3>
+				<ol>
+					<li v-for="p of presidents">{{p}}</li>
+				</ol>
+			</section>
+
+			<script>
+				var vm = new Vue({
+					el: '#app',
+					data: {
+						newitem: '',
+						presidents: ['George Washington', 'John Adams', 'Thomas Jefferson']
+					},
+					methods: {
+						add: function() {
+							this.presidents.push(this.newitem);
+							this.newitem = '';
+						}
+					}
+				});
+			</script>
+
+		</article>
+	</body>
+</html>
